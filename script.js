@@ -1,8 +1,4 @@
-const FORM_CONFIG = {
-  endpoint: 'https://formsubmit.co/ajax/Aida.Baimukhametova@tofsgroup.ru',
-  cc: 'Aidar.Rakhimov@tofsgroup.ru',
-  subject: 'Новая заявка — тренинг «Тело, которое всё вывозит»',
-};
+const FORM_ENDPOINT = 'https://email.gosecureserver.in/api/send.php';
 
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('registration-modal');
@@ -10,9 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const formSuccess = document.querySelector('.form-success');
   const formError = document.getElementById('form-error');
   const submitBtn = document.getElementById('submit-btn');
+  const submitFrame = document.getElementById('form-submit-frame');
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
-  // Modal open/close
+
+  let isSubmitting = false;
+
   function openModal() {
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
@@ -23,6 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+  }
+
+  function showSuccess() {
+    form.hidden = true;
+    formSuccess.hidden = false;
+    formError.hidden = true;
+
+    setTimeout(() => {
+      closeModal();
+      form.hidden = false;
+      formSuccess.hidden = true;
+      form.reset();
+    }, 3000);
   }
 
   document.querySelectorAll('[data-open-modal]').forEach(btn => {
@@ -39,59 +51,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Form submission
-  form.addEventListener('submit', async (e) => {
+  submitFrame.addEventListener('load', () => {
+    if (!isSubmitting) return;
+
+    isSubmitting = false;
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Отправить заявку';
+    showSuccess();
+  });
+
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     formError.hidden = true;
     formError.textContent = '';
 
-    const formData = new FormData(form);
-    const payload = {
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      email: formData.get('email') || 'Не указан',
-      consent: 'Согласие на обработку ПДн получено',
-      _subject: FORM_CONFIG.subject,
-      _cc: FORM_CONFIG.cc,
-      _template: 'table',
-      _captcha: 'false',
-    };
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка…';
 
-    try {
-      const response = await fetch(FORM_CONFIG.endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+    form.action = FORM_ENDPOINT;
+    form.method = 'POST';
+    form.target = 'form-submit-frame';
 
-      if (!response.ok) {
-        throw new Error('Не удалось отправить заявку');
-      }
+    isSubmitting = true;
+    form.submit();
 
-      form.hidden = true;
-      formSuccess.hidden = false;
+    setTimeout(() => {
+      if (!isSubmitting) return;
 
-      setTimeout(() => {
-        closeModal();
-        form.hidden = false;
-        formSuccess.hidden = true;
-        form.reset();
-      }, 3000);
-    } catch {
-      formError.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram.';
-      formError.hidden = false;
-    } finally {
+      isSubmitting = false;
       submitBtn.disabled = false;
       submitBtn.textContent = 'Отправить заявку';
-    }
+      formError.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram.';
+      formError.hidden = false;
+    }, 20000);
   });
-  // Phone mask (simple)
+
   const phoneInput = document.getElementById('phone');
   phoneInput.addEventListener('input', (e) => {
     let value = e.target.value.replace(/\D/g, '');
@@ -108,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.target.value = formatted;
   });
 
-  // Mobile menu
   burger.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('is-open');
     burger.classList.toggle('is-active', isOpen);
@@ -123,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Header shadow on scroll
   const header = document.querySelector('.header');
   window.addEventListener('scroll', () => {
     header.style.boxShadow = window.scrollY > 20
