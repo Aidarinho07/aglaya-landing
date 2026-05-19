@@ -1,5 +1,10 @@
 const FORM_SUBJECT = 'Новая заявка — тренинг «Тело, которое всё вывозит»';
 
+const FORM_RECIPIENTS = {
+  primary: 'Aida.Baimukhametova@tofsgroup.ru',
+  cc: 'Aidar.Rakhimov@tofsgroup.ru, rakhimov.aydar@yandex.ru',
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('registration-modal');
   const form = document.getElementById('registration-form');
@@ -53,28 +58,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  async function sendViaGoogleScript(payload) {
-    const url = window.FORM_CONFIG?.googleScriptUrl;
-    if (!url) {
-      throw new Error('Google Script URL не настроен');
-    }
-
-    const response = await fetch(url, {
+  async function sendViaFormSubmit(payload) {
+    const response = await fetch(`https://formsubmit.co/ajax/${FORM_RECIPIENTS.primary}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        name: payload.name,
+        phone: payload.phone,
+        email: payload.email,
+        _subject: FORM_SUBJECT,
+        _cc: FORM_RECIPIENTS.cc,
+        _template: 'table',
+        _captcha: 'false',
+      }),
     });
 
-    const result = await response.json();
-    if (!result.success) {
-      throw new Error(result.message || 'Ошибка отправки');
+    if (!response.ok) {
+      throw new Error(`FormSubmit недоступен (${response.status})`);
     }
+
+    return response.json();
   }
 
   async function sendViaWeb3Forms(payload) {
     const accessKey = window.FORM_CONFIG?.web3formsAccessKey;
     if (!accessKey) {
-      throw new Error('Web3Forms access key не настроен');
+      throw new Error('Web3Forms key missing');
     }
 
     const response = await fetch('https://api.web3forms.com/submit', {
@@ -95,14 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
           `Телефон: ${payload.phone}\n` +
           `Email: ${payload.email}\n\n` +
           'Согласие на обработку ПДн получено.',
-        ccemail: window.FORM_CONFIG?.web3formsCcEmails || '',
+        ccemail: window.FORM_CONFIG?.ccEmails || '',
         botcheck: '',
       }),
     });
 
     const result = await response.json();
     if (!result.success) {
-      throw new Error(result.message || 'Ошибка отправки');
+      throw new Error(result.message || 'Web3Forms error');
     }
   }
 
@@ -118,26 +130,30 @@ document.addEventListener('DOMContentLoaded', () => {
       email: String(formData.get('email') || '').trim() || 'Не указан',
     };
 
-    const hasGoogleScript = Boolean(window.FORM_CONFIG?.googleScriptUrl);
-    const hasWeb3Forms = Boolean(window.FORM_CONFIG?.web3formsAccessKey);
-
-    if (!hasGoogleScript && !hasWeb3Forms) {
-      showError('Форма ещё не подключена к почте. Напишите нам в Telegram или на rakhimov.aydar@yandex.ru');
-      return;
-    }
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка…';
 
     try {
-      if (hasGoogleScript) {
-        await sendViaGoogleScript(payload);
-      } else {
+      const hasWeb3Key = Boolean(window.FORM_CONFIG?.web3formsAccessKey);
+
+      if (hasWeb3Key) {
         await sendViaWeb3Forms(payload);
+      } else {
+        await sendViaFormSubmit(payload);
       }
       showSuccess();
-    } catch {
-      showError('Не удалось отправить заявку. Попробуйте ещё раз или напишите на rakhimov.aydar@yandex.ru');
+    } catch (error) {
+      const isFormSubmitDown = String(error.message).includes('FormSubmit') || error.name === 'TypeError';
+
+      if (isFormSubmitDown && !window.FORM_CONFIG?.web3formsAccessKey) {
+        showError(
+          'Сервис FormSubmit сейчас недоступен (ошибка 522 на их стороне). ' +
+          'Чтобы форма заработала без Google: зайдите на web3forms.com, укажите почту, ' +
+          'вставьте полученный ключ в config.js и обновите сайт.'
+        );
+      } else {
+        showError('Не удалось отправить заявку. Попробуйте ещё раз или напишите на rakhimov.aydar@yandex.ru');
+      }
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Отправить заявку';

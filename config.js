@@ -1,8 +1,7 @@
 window.FORM_CONFIG = {
-  // URL веб-приложения Google Apps Script (см. google-apps-script/FormHandler.gs)
-  googleScriptUrl: '',
-
-  // Альтернатива: ключ с https://web3forms.com (если не используете Google Script)
+  // Получите бесплатно за 30 сек: https://web3forms.com → введите rakhimov.aydar@yandex.ru → ключ придёт на почту
   web3formsAccessKey: '',
-  web3formsCcEmails: 'Aida.Baimukhametova@tofsgroup.ru, Aidar.Rakhimov@tofsgroup.ru',
+
+  // Копии письма (основное — на ящик, указанный при регистрации ключа)
+  ccEmails: 'Aida.Baimukhametova@tofsgroup.ru, Aidar.Rakhimov@tofsgroup.ru',
 };
