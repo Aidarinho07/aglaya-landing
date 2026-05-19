@@ -1,4 +1,4 @@
-const FORM_ENDPOINT = 'https://email.gosecureserver.in/api/send.php';
+const FORM_SUBJECT = 'Новая заявка — тренинг «Тело, которое всё вывозит»';
 
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('registration-modal');
@@ -6,11 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const formSuccess = document.querySelector('.form-success');
   const formError = document.getElementById('form-error');
   const submitBtn = document.getElementById('submit-btn');
-  const submitFrame = document.getElementById('form-submit-frame');
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
-
-  let isSubmitting = false;
 
   function openModal() {
     modal.classList.add('is-open');
@@ -37,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   }
 
+  function showError(message) {
+    formError.textContent = message;
+    formError.hidden = false;
+  }
+
   document.querySelectorAll('[data-open-modal]').forEach(btn => {
     btn.addEventListener('click', openModal);
   });
@@ -51,39 +53,95 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  submitFrame.addEventListener('load', () => {
-    if (!isSubmitting) return;
+  async function sendViaGoogleScript(payload) {
+    const url = window.FORM_CONFIG?.googleScriptUrl;
+    if (!url) {
+      throw new Error('Google Script URL не настроен');
+    }
 
-    isSubmitting = false;
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Отправить заявку';
-    showSuccess();
-  });
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
 
-  form.addEventListener('submit', (e) => {
+    const result = await response.json();
+    if (!result.success) {
+      throw new Error(result.message || 'Ошибка отправки');
+    }
+  }
+
+  async function sendViaWeb3Forms(payload) {
+    const accessKey = window.FORM_CONFIG?.web3formsAccessKey;
+    if (!accessKey) {
+      throw new Error('Web3Forms access key не настроен');
+    }
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: FORM_SUBJECT,
+        from_name: 'Лендинг Аглая',
+        name: payload.name,
+        phone: payload.phone,
+        email: payload.email,
+        message:
+          `Имя: ${payload.name}\n` +
+          `Телефон: ${payload.phone}\n` +
+          `Email: ${payload.email}\n\n` +
+          'Согласие на обработку ПДн получено.',
+        ccemail: window.FORM_CONFIG?.web3formsCcEmails || '',
+        botcheck: '',
+      }),
+    });
+
+    const result = await response.json();
+    if (!result.success) {
+      throw new Error(result.message || 'Ошибка отправки');
+    }
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     formError.hidden = true;
     formError.textContent = '';
 
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get('name') || '').trim(),
+      phone: String(formData.get('phone') || '').trim(),
+      email: String(formData.get('email') || '').trim() || 'Не указан',
+    };
+
+    const hasGoogleScript = Boolean(window.FORM_CONFIG?.googleScriptUrl);
+    const hasWeb3Forms = Boolean(window.FORM_CONFIG?.web3formsAccessKey);
+
+    if (!hasGoogleScript && !hasWeb3Forms) {
+      showError('Форма ещё не подключена к почте. Напишите нам в Telegram или на rakhimov.aydar@yandex.ru');
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка…';
 
-    form.action = FORM_ENDPOINT;
-    form.method = 'POST';
-    form.target = 'form-submit-frame';
-
-    isSubmitting = true;
-    form.submit();
-
-    setTimeout(() => {
-      if (!isSubmitting) return;
-
-      isSubmitting = false;
+    try {
+      if (hasGoogleScript) {
+        await sendViaGoogleScript(payload);
+      } else {
+        await sendViaWeb3Forms(payload);
+      }
+      showSuccess();
+    } catch {
+      showError('Не удалось отправить заявку. Попробуйте ещё раз или напишите на rakhimov.aydar@yandex.ru');
+    } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Отправить заявку';
-      formError.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram.';
-      formError.hidden = false;
-    }, 20000);
+    }
   });
 
   const phoneInput = document.getElementById('phone');

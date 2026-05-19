@@ -221,12 +221,7 @@
       <button class="modal__close" data-close-modal aria-label="Закрыть">&times;</button>
       <h2 id="modal-title" class="modal__title">Записаться на тренинг</h2>
       <p class="modal__subtitle">«Тело, которое всё вывозит» — 18–19 сентября, Тюмень</p>
-      <form class="form" id="registration-form" method="POST" accept-charset="UTF-8">
-        <input type="hidden" name="to" value="Aida.Baimukhametova@tofsgroup.ru, Aidar.Rakhimov@tofsgroup.ru">
-        <input type="hidden" name="subject" value="Новая заявка — тренинг «Тело, которое всё вывозит»">
-        <div class="hp-field" aria-hidden="true">
-          <input type="text" name="hp_email" tabindex="-1" autocomplete="off">
-        </div>
+      <form class="form" id="registration-form">
         <div class="form__group">
           <label for="name">Ваше имя</label>
           <input type="text" id="name" name="name" required placeholder="Как к вам обращаться?">
@@ -256,8 +251,7 @@
     </div>
   </div>
 
-  <iframe name="form-submit-frame" id="form-submit-frame" title="Отправка формы" hidden></iframe>
-
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
