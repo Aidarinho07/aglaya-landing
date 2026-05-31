@@ -196,96 +196,34 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollY > 20 ? '0 4px 20px rgba(61, 43, 31, 0.08)' : 'none';
   });
 
-  initForWhomReveal();
-  initTextTrail();
+  initLeadReveal();
 });
 
-function initForWhomReveal() {
-  const lead = document.querySelector('.for-whom__lead');
-  const section = document.getElementById('for-whom');
-  if (!lead || !section) return;
+function initLeadReveal() {
+  const leads = document.querySelectorAll('.for-whom__lead');
+  if (!leads.length) return;
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    lead.classList.add('is-visible');
-    return;
-  }
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        lead.classList.add('is-visible');
-        observer.disconnect();
-      }
-    },
-    { threshold: 0.35 }
-  );
-
-  observer.observe(section);
-}
-
-function initTextTrail() {
-  const elements = document.querySelectorAll('[data-text-trail]');
-  if (!elements.length) return;
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const isTouch = window.matchMedia('(hover: none)').matches;
-  const radius = isTouch ? 90 : 110;
-  const strength = isTouch ? 0.32 : 0.38;
-
-  elements.forEach((el) => {
-    const original = el.textContent.trim();
-    el.setAttribute('aria-label', original);
-    el.textContent = '';
-
-    const chars = [];
-
-    for (const char of original) {
-      const span = document.createElement('span');
-      span.className = 'text-trail__char';
-      span.setAttribute('aria-hidden', 'true');
-
-      if (char === ' ') {
-        span.classList.add('text-trail__char--space');
-        span.innerHTML = '&nbsp;';
-      } else {
-        span.textContent = char;
-      }
-
-      el.appendChild(span);
-      chars.push(span);
+  leads.forEach((lead) => {
+    if (reducedMotion) {
+      lead.classList.add('is-visible');
+      return;
     }
 
-    function applyForce(clientX, clientY) {
-      chars.forEach((span) => {
-        const rect = span.getBoundingClientRect();
-        const x = rect.left + rect.width / 2;
-        const y = rect.top + rect.height / 2;
-        const dx = clientX - x;
-        const dy = clientY - y;
-        const dist = Math.hypot(dx, dy);
+    const section = lead.closest('section');
+    if (!section) return;
 
-        if (dist < radius) {
-          const force = (1 - dist / radius) * strength;
-          span.style.transform = `translate(${-dx * force}px, ${-dy * force}px)`;
-        } else {
-          span.style.transform = 'translate(0, 0)';
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          lead.classList.add('is-visible');
+          observer.disconnect();
         }
-      });
-    }
+      },
+      { threshold: 0.35 }
+    );
 
-    function reset() {
-      chars.forEach((span) => {
-        span.style.transform = 'translate(0, 0)';
-      });
-    }
-
-    el.addEventListener('pointermove', (event) => {
-      applyForce(event.clientX, event.clientY);
-    });
-
-    el.addEventListener('pointerleave', reset);
-    el.addEventListener('pointerup', reset);
-    el.addEventListener('pointercancel', reset);
+    observer.observe(section);
   });
 }
