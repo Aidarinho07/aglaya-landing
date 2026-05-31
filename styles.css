@@ -1005,39 +1005,6 @@ button {
   line-height: 1.7;
 }
 
-/* ===== Format ===== */
-.format-list {
-  max-width: 720px;
-  margin: 32px auto 0;
-}
-
-.format-list li {
-  position: relative;
-  padding-left: 36px;
-  margin-bottom: 20px;
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--color-text);
-}
-
-.format-list li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: var(--color-primary-light);
-}
-
-.format-warning {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-primary-light);
-  padding: 16px;
-  border: 1px solid rgba(212, 149, 122, 0.3);
-  border-radius: var(--radius-sm);
-}
-
 /* ===== Price ===== */
 .price-block {
   text-align: center;
@@ -1902,12 +1869,6 @@ button {
 
   .card h3 {
     font-size: 22px;
-  }
-
-  .format-list li {
-    font-size: 15px;
-    padding-left: 28px;
-    margin-bottom: 16px;
   }
 
   .price-badge {
