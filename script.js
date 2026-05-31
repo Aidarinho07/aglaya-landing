@@ -30,12 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (cfg.max) {
-      const maxSlug = String(cfg.max)
-        .trim()
-        .replace(/^https?:\/\/(www\.)?max\.ru\//i, '')
-        .replace(/\/$/, '');
-      if (maxSlug && maxSlug !== ':share') {
-        links.max = `https://max.ru/${maxSlug}?text=${message}`;
+      const maxRaw = String(cfg.max).trim();
+      let maxUrl;
+
+      if (/^https?:\/\//i.test(maxRaw)) {
+        maxUrl = maxRaw.replace(/\/$/, '');
+      } else {
+        const maxSlug = maxRaw.replace(/^\/+/, '').replace(/\/$/, '');
+        if (maxSlug && maxSlug !== ':share') {
+          maxUrl = `https://max.ru/${maxSlug}`;
+        }
+      }
+
+      if (maxUrl) {
+        links.max = `${maxUrl}?text=${message}`;
       }
     }
 

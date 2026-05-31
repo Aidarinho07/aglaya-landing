@@ -1,12 +1,9 @@
 window.FORM_CONFIG = {
   booking: {
     message: 'Здравствуйте, хочу записаться на тренинг к Аглае Датешидзе',
-    // Username в Telegram без @ (например: myusername)
-    telegram: '',
-    // ID пользователя ВК (цифры из vk.ru/id412170144)
+    telegram: 'Aida_Baimukhametova',
     vk: '412170144',
-    // Ник в MAX → ссылка max.ru/ник (скопируйте из профиля в приложении)
-    max: '',
+    max: 'https://max.ru/u/f9LHodD0cOL-YbWj7SKU2B9SWe9PIhrNJ-Nbiwx6v4zHyWGRqbcceXVWKBo',
   },
 
   contact: {

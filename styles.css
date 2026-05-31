@@ -1335,16 +1335,18 @@ button {
 
 .messenger-btn__icon {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
   border-radius: 50%;
   color: #fff;
+}
+
+.messenger-btn__icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .messenger-btn--telegram {
@@ -1353,6 +1355,7 @@ button {
 
 .messenger-btn--telegram:hover {
   border-color: #2aabee;
+  background: rgba(42, 171, 238, 0.06);
 }
 
 .messenger-btn--telegram .messenger-btn__icon {
@@ -1360,15 +1363,21 @@ button {
 }
 
 .messenger-btn--max {
-  border-color: rgba(91, 95, 255, 0.35);
+  border-color: rgba(75, 100, 255, 0.35);
 }
 
 .messenger-btn--max:hover {
-  border-color: #5b5fff;
+  border-color: #4b64ff;
+  background: rgba(75, 100, 255, 0.06);
 }
 
 .messenger-btn--max .messenger-btn__icon {
-  background: linear-gradient(135deg, #5b5fff 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #4b64ff 0%, #8250ff 100%);
+}
+
+.messenger-btn--max .messenger-btn__icon svg {
+  width: 26px;
+  height: 26px;
 }
 
 .messenger-btn--vk {
@@ -1377,6 +1386,7 @@ button {
 
 .messenger-btn--vk:hover {
   border-color: #0077ff;
+  background: rgba(0, 119, 255, 0.06);
 }
 
 .messenger-btn--vk .messenger-btn__icon {
