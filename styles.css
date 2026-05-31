@@ -1017,7 +1017,7 @@ button {
   margin-bottom: 20px;
   font-size: 17px;
   line-height: 1.6;
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 
 .format-list li::before {
