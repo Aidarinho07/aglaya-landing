@@ -1022,124 +1022,15 @@ button {
 
 /* ===== Price ===== */
 .price-block {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 640px;
 }
 
-.price-location {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: 8px;
+.price-block .section__title {
+  margin-top: 8px;
 }
 
-.price-limit {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: 24px;
-}
-
-.price-badge {
-  display: inline-block;
-  padding: 10px 24px;
-  background: var(--color-early);
-  color: var(--color-white);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-radius: var(--radius-full);
-  margin-bottom: 32px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-}
-
-.price-cards {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-
-.price-card {
-  flex: 1;
-  min-width: 200px;
-  max-width: 260px;
-  padding: 32px 24px;
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  border: 2px solid var(--color-border);
-  backdrop-filter: blur(6px);
-}
-.price-card--early {
-  border-color: var(--color-primary);
-  position: relative;
-}
-
-.price-card--early::after {
-  content: 'Выгодно';
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 16px;
-  background: var(--color-primary);
-  color: var(--color-white);
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: var(--radius-full);
-}
-
-.price-card__label {
-  display: block;
-  font-size: 14px;
-  color: var(--color-text-muted);
-  margin-bottom: 8px;
-}
-
-.price-card__amount {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 40px;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.price-card__note {
-  display: block;
-  font-size: 13px;
-  color: var(--color-text-muted);
-  margin-top: 4px;
-}
-
-.price-note {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: 16px;
-}
-
-.price-tagline {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 36px;
-  color: var(--color-text);
-}
-
-.price-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
+.price-block__note {
+  margin-bottom: 28px;
 }
 
 /* ===== Footer ===== */
@@ -1592,16 +1483,6 @@ button {
   .header__cta {
     display: inline-flex;
   }
-
-  .price-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .price-actions .btn {
-    width: auto;
-  }
 }
 
 @media (max-width: 900px) {
@@ -1905,44 +1786,9 @@ button {
     font-size: 22px;
   }
 
-  .price-badge {
-    font-size: 12px;
-    padding: 8px 16px;
-    line-height: 1.4;
-    white-space: normal;
-    max-width: 100%;
-  }
-
-  .price-cards {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-  }
-
-  .price-card {
-    max-width: 100%;
-    width: 100%;
-    padding: 24px 20px;
-  }
-
-  .price-card__amount {
-    font-size: 34px;
-  }
-
-  .price-tagline {
-    font-size: 19px;
-    margin-bottom: 28px;
-  }
-
-  .price-actions {
-    width: 100%;
-    gap: 10px;
-  }
-
-  .price-actions .btn {
+  .price-block .btn {
     width: 100%;
     white-space: normal;
-    padding: 16px 20px;
   }
 
   .section--contact .btn {
@@ -2045,10 +1891,6 @@ button {
     font-size: 19px;
   }
 
-  .price-card__amount {
-    font-size: 30px;
-  }
-
   .floating-cta {
     font-size: 14px;
     padding: 14px 16px;
@@ -2089,10 +1931,6 @@ button {
     opacity: 1;
     transform: none;
     transition: none;
-    animation: none;
-  }
-
-  .price-badge {
     animation: none;
   }
 
