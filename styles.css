@@ -1349,6 +1349,20 @@ button {
   height: 24px;
 }
 
+.messenger-btn__icon--brand {
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.messenger-btn__icon--brand img {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 .messenger-btn--telegram {
   border-color: rgba(42, 171, 238, 0.35);
 }
@@ -1371,15 +1385,6 @@ button {
   background: rgba(75, 100, 255, 0.06);
 }
 
-.messenger-btn--max .messenger-btn__icon {
-  background: linear-gradient(135deg, #4b64ff 0%, #8250ff 100%);
-}
-
-.messenger-btn--max .messenger-btn__icon svg {
-  width: 26px;
-  height: 26px;
-}
-
 .messenger-btn--vk {
   border-color: rgba(0, 119, 255, 0.35);
 }
@@ -1387,10 +1392,6 @@ button {
 .messenger-btn--vk:hover {
   border-color: #0077ff;
   background: rgba(0, 119, 255, 0.06);
-}
-
-.messenger-btn--vk .messenger-btn__icon {
-  background: #0077ff;
 }
 
 .booking-toast {
