@@ -228,7 +228,10 @@ function initTextTrail() {
   if (!elements.length) return;
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(hover: none)').matches) return;
+
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  const radius = isTouch ? 90 : 110;
+  const strength = isTouch ? 0.32 : 0.38;
 
   elements.forEach((el) => {
     const original = el.textContent.trim();
@@ -253,16 +256,13 @@ function initTextTrail() {
       chars.push(span);
     }
 
-    const radius = 110;
-    const strength = 0.38;
-
-    function handleMove(event) {
+    function applyForce(clientX, clientY) {
       chars.forEach((span) => {
         const rect = span.getBoundingClientRect();
         const x = rect.left + rect.width / 2;
         const y = rect.top + rect.height / 2;
-        const dx = event.clientX - x;
-        const dy = event.clientY - y;
+        const dx = clientX - x;
+        const dy = clientY - y;
         const dist = Math.hypot(dx, dy);
 
         if (dist < radius) {
@@ -280,7 +280,12 @@ function initTextTrail() {
       });
     }
 
-    el.addEventListener('mousemove', handleMove);
-    el.addEventListener('mouseleave', reset);
+    el.addEventListener('pointermove', (event) => {
+      applyForce(event.clientX, event.clientY);
+    });
+
+    el.addEventListener('pointerleave', reset);
+    el.addEventListener('pointerup', reset);
+    el.addEventListener('pointercancel', reset);
   });
 }

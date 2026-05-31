@@ -885,6 +885,7 @@ button {
 
 .text-trail {
   cursor: default;
+  touch-action: pan-y;
 }
 
 .text-trail__char {
