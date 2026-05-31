@@ -964,23 +964,29 @@ button {
 /* ===== Trainer ===== */
 .trainer {
   display: flex;
-  gap: 48px;
+  gap: 56px;
   align-items: center;
-  padding: 48px;
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(6px);
+  padding: 0;
 }
+.trainer__photo,
 .trainer__photo-placeholder {
-  width: 200px;
-  height: 240px;
-  background: linear-gradient(145deg, var(--color-bg-cream), var(--color-primary-light));
+  width: 260px;
+  height: 320px;
   border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.trainer__photo {
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(1.1);
+}
+
+.trainer__photo-placeholder {
+  background: linear-gradient(145deg, var(--color-bg-cream), var(--color-primary-light));
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .trainer__photo-placeholder span {
@@ -992,29 +998,28 @@ button {
 
 .trainer__label {
   display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-primary);
-  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
 }
 
 .trainer__name {
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: 46px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .trainer__role {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--color-text-muted);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .trainer__desc {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-text-muted);
   line-height: 1.7;
 }
@@ -1647,16 +1652,26 @@ button {
   .trainer {
     flex-direction: column;
     text-align: center;
-    padding: 32px 24px;
+    gap: 32px;
   }
 
+  .trainer__photo,
   .trainer__photo-placeholder {
-    width: 160px;
-    height: 200px;
+    width: 220px;
+    height: 270px;
   }
 
   .trainer__name {
-    font-size: 28px;
+    font-size: 38px;
+  }
+
+  .trainer__label,
+  .trainer__role {
+    font-size: 16px;
+  }
+
+  .trainer__desc {
+    font-size: 17px;
   }
 }
 
@@ -2044,9 +2059,18 @@ button {
     padding: 14px 16px;
   }
 
+  .trainer__photo,
   .trainer__photo-placeholder {
-    width: 140px;
-    height: 170px;
+    width: 190px;
+    height: 235px;
+  }
+
+  .trainer__name {
+    font-size: 34px;
+  }
+
+  .trainer__label {
+    font-size: 17px;
   }
 
   .trainer__photo-placeholder span {
