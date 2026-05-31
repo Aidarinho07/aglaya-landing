@@ -1,31 +1,42 @@
 const DEFAULT_BOOKING_MESSAGE =
   'Здравствуйте, хочу записаться на тренинг к Аглае Датешидзе';
 
+const MOBILE_RE = /Android|iPhone|iPad|iPod|Mobile/i;
+
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('registration-modal');
+  const toast = document.getElementById('booking-toast');
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
+  let toastTimer;
 
   function getBookingConfig() {
     return window.FORM_CONFIG?.booking || {};
   }
 
+  function getBookingMessage() {
+    const cfg = getBookingConfig();
+    return cfg.message || DEFAULT_BOOKING_MESSAGE;
+  }
+
   function buildMessengerLinks() {
     const cfg = getBookingConfig();
-    const message = encodeURIComponent(cfg.message || DEFAULT_BOOKING_MESSAGE);
+    const message = encodeURIComponent(getBookingMessage());
     const links = {};
 
     if (cfg.telegram) {
       const username = String(cfg.telegram).replace(/^@/, '').trim();
       if (username) {
-        links.telegram = `https://t.me/${username}?text=${message}`;
+        links.telegram = MOBILE_RE.test(navigator.userAgent)
+          ? `tg://resolve?domain=${username}&text=${message}`
+          : `https://t.me/${username}?text=${message}`;
       }
     }
 
     if (cfg.vk) {
       const vkId = String(cfg.vk).replace(/\D/g, '');
       if (vkId) {
-        links.vk = `https://vk.me/id${vkId}?message=${message}`;
+        links.vk = `https://vk.com/im?sel=${vkId}&msg=${message}`;
       }
     }
 
@@ -43,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (maxUrl) {
-        links.max = `${maxUrl}?text=${message}`;
+        links.max = maxUrl;
       }
     }
 
@@ -60,12 +71,78 @@ document.addEventListener('DOMContentLoaded', () => {
       if (href) {
         btn.href = href;
         btn.hidden = false;
-        btn.removeAttribute('aria-disabled');
+        btn.dataset.webHref = href;
       } else {
         btn.hidden = true;
         btn.removeAttribute('href');
+        delete btn.dataset.webHref;
       }
     });
+  }
+
+  async function copyBookingMessage() {
+    const text = getBookingMessage();
+
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      let copied = false;
+      try {
+        copied = document.execCommand('copy');
+      } catch {
+        copied = false;
+      }
+
+      document.body.removeChild(textarea);
+      return copied;
+    }
+  }
+
+  function showBookingToast(copied) {
+    if (!toast) return;
+
+    toast.textContent = copied
+      ? 'Текст скопирован — вставьте его в поле сообщения и отправьте'
+      : 'Откройте чат и отправьте: «Здравствуйте, хочу записаться на тренинг…»';
+    toast.hidden = false;
+    toast.classList.add('is-visible');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('is-visible');
+      toast.hidden = true;
+    }, 4500);
+  }
+
+  function openMessengerLink(url) {
+    if (MOBILE_RE.test(navigator.userAgent)) {
+      window.location.href = url;
+      return;
+    }
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  async function handleMessengerClick(event) {
+    const btn = event.currentTarget;
+    const url = btn.dataset.webHref || btn.getAttribute('href');
+    if (!url) return;
+
+    event.preventDefault();
+
+    const copied = await copyBookingMessage();
+    closeModal();
+    showBookingToast(copied);
+    openMessengerLink(url);
   }
 
   function openModal() {
@@ -90,9 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelectorAll('[data-messenger]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      closeModal();
-    });
+    btn.addEventListener('click', handleMessengerClick);
   });
 
   document.addEventListener('keydown', (e) => {

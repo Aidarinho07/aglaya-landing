@@ -271,7 +271,7 @@
       <button class="modal__close" data-close-modal aria-label="Закрыть">&times;</button>
       <h2 id="modal-title" class="modal__title">Записаться на тренинг</h2>
       <p class="modal__subtitle">«Тело, которое всё вывозит» — 18–19 сентября, Тюмень</p>
-      <p class="modal__hint">Выберите удобный мессенджер — сообщение подставится автоматически:</p>
+      <p class="modal__hint">Выберите мессенджер — текст скопируется, останется вставить и отправить:</p>
       <div class="messenger-picker">
         <a class="messenger-btn messenger-btn--telegram" data-messenger="telegram" target="_blank" rel="noopener noreferrer" hidden>
           <span class="messenger-btn__icon" aria-hidden="true">
@@ -300,6 +300,8 @@
       </div>
     </div>
   </div>
+
+  <div class="booking-toast" id="booking-toast" role="status" aria-live="polite" hidden></div>
 
   <script src="config.js"></script>
   <script src="script.js"></script>

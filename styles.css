@@ -1393,6 +1393,31 @@ button {
   background: #0077ff;
 }
 
+.booking-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0));
+  z-index: 300;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-white);
+  text-align: center;
+  background: rgba(44, 36, 25, 0.92);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  transform: translate(-50%, 16px);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.booking-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 /* ===== Form ===== */
 .form__group {
   margin-bottom: 20px;
