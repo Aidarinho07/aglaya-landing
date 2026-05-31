@@ -470,6 +470,12 @@ button {
   background: var(--color-bg-cream);
 }
 
+.section--hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(184, 107, 74, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(107, 143, 113, 0.06) 0%, transparent 50%);
+}
+
 .section--dark {
   background: var(--color-bg-dark);
   color: var(--color-text-light);
@@ -1011,7 +1017,7 @@ button {
   margin-bottom: 20px;
   font-size: 17px;
   line-height: 1.6;
-  color: rgba(245, 240, 234, 0.85);
+  color: var(--color-text-muted);
 }
 
 .format-list li::before {
