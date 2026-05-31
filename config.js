@@ -4,4 +4,10 @@ window.FORM_CONFIG = {
 
   // Копии письма (основное — на ящик, указанный при регистрации ключа)
   ccEmails: 'Aida.Baimukhametova@tofsgroup.ru, Aidar.Rakhimov@tofsgroup.ru',
+
+  contact: {
+    name: 'Аида Баймухаметова',
+    phone: '+7 982 987 8030',
+    vk: 'https://vk.ru/id412170144',
+  },
 };

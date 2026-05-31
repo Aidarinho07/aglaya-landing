@@ -196,4 +196,29 @@ document.addEventListener('DOMContentLoaded', () => {
       ? '0 4px 20px rgba(61, 43, 31, 0.08)'
       : 'none';
   });
+
+  initForWhomReveal();
 });
+
+function initForWhomReveal() {
+  const lead = document.querySelector('.for-whom__lead');
+  const section = document.getElementById('for-whom');
+  if (!lead || !section) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    lead.classList.add('is-visible');
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        lead.classList.add('is-visible');
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.35 }
+  );
+
+  observer.observe(section);
+}

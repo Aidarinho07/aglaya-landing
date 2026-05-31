@@ -4,23 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Тело, которое всё вывозит — офлайн-тренинг в Тюмени | Аглая Датешидзе</title>
-  <meta name="description" content="Офлайн-тренинг 18–19 сентября в Тюмени. Телесные практики с Аглаей Датешидзе. Ранняя стоимость 15 000 ₽ до 18 августа.">
+  <meta name="description" content="Офлайн-тренинг 18–19 сентября в Тюмени. Телесные практики с Аглаей Датешидзе. Ранняя стоимость 15 000 ₽ до 1 сентября.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp; г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp; г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp; г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp;</span>
+      <span>г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp; г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp; г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp; г. Тюмень &nbsp;·&nbsp; 18–19 сентября &nbsp;&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container header__inner">
-      <a href="#" class="logo">Аглая Датешидзе</a>
       <nav class="nav">
         <a href="#about">О тренинге</a>
         <a href="#for-whom">Для кого</a>
         <a href="#format">Формат</a>
         <a href="#price">Стоимость</a>
+        <a href="#contact">Контакты</a>
       </nav>
-      <button class="btn btn--primary btn--sm header__cta" data-open-modal>Записаться</button>
       <button class="burger" aria-label="Меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -30,68 +36,87 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <div class="hero__bg"></div>
-      <div class="container hero__content">
-        <div class="hero__badge">Офлайн-тренинг в Тюмени</div>
-        <p class="hero__meta">18–19 сентября &nbsp;|&nbsp; Аглая Датешидзе</p>
-        <h1 class="hero__title">«Тело, которое всё вывозит»</h1>
-        <p class="hero__subtitle">
-          Группа для всех, кто уже не вывозит и всех помогающих специалистов.<br>
-          Пора перестать воевать с собой и наконец уделить время тому, кто работает за вас 24/7.<br>
-          <strong>Вашему телу.</strong>
-        </p>
-        <div class="hero__actions">
-          <button class="btn btn--primary btn--lg" data-open-modal>Присоединиться со скидкой</button>
-        </div>
-        <div class="hero__info">
-          <div class="info-card">
-            <span class="info-card__label">Когда</span>
-            <span class="info-card__value">18, 19 сентября</span>
-          </div>
-          <div class="info-card">
-            <span class="info-card__label">Формат</span>
-            <span class="info-card__value">Офлайн, г. Тюмень</span>
-          </div>
-        </div>
-      </div>
-    </section>
+      <div class="container hero__grid">
+        <div class="hero__main">
+          <h1 class="hero__heading">
+            <span class="hero__heading-title">«Тело, которое всё вывозит»</span>
+            <span class="hero__heading-meta">с Аглаей Датешидзе</span>
+          </h1>
 
-    <!-- Testimonial -->
-    <section class="testimonial">
-      <div class="container">
-        <blockquote class="testimonial__quote">
-          <p>Знаете, я сама впервые пришла на класс к Аглае в 2022 году. И была в настоящем восторге. Оказывается, я так мало знала о том, на что способно моё тело.</p>
-          <footer>— Участница тренинга</footer>
-        </blockquote>
-        <button class="btn btn--outline" data-open-modal>Хочу так же. Записаться.</button>
+          <p class="hero__hook">
+            Пора перестать воевать с собой и наконец уделить время тому, кто работает за вас 24/7 — <strong>вашему телу.</strong>
+          </p>
+          <p class="hero__training-lead">
+            Два дня живого офлайн-погружения в телесность — практики, круг вопросов, безопасное пространство, где можно быть собой.
+          </p>
+
+          <ul class="hero__benefits">
+            <li>Научитесь слышать тело <em>до</em> того, как накроет тревога или усталость</li>
+            <li>2 дня практик офлайн — много упражнений, минимум «просто послушать»</li>
+            <li>Круг, где можно задать свои вопросы ведущей</li>
+          </ul>
+          <p class="hero__note">Количество мест ограничено · ранняя цена до 1 сентября</p>
+        </div>
+
+        <aside class="hero__card" aria-label="Информация о тренинге">
+          <div class="hero__card-urgency">Ранняя стоимость</div>
+          <div class="hero__card-price">
+            <span class="hero__card-price-value">15 000 ₽</span>
+            <span class="hero__card-price-old">17 000 ₽</span>
+          </div>
+          <p class="hero__card-price-note">до 1 сентября · при наличии мест</p>
+
+          <div class="hero__card-divider"></div>
+
+          <ul class="hero__card-details">
+            <li>
+              <span class="hero__card-label">18 сентября</span>
+              <span class="hero__card-value">18:00–22:00</span>
+            </li>
+            <li>
+              <span class="hero__card-label">19 сентября</span>
+              <span class="hero__card-value">12:00–18:00</span>
+            </li>
+            <li>
+              <span class="hero__card-label">Место</span>
+              <span class="hero__card-value">г. Тюмень, офлайн</span>
+            </li>
+            <li>
+              <span class="hero__card-label">Формат</span>
+              <span class="hero__card-value">2 дня погружения</span>
+            </li>
+          </ul>
+
+          <button class="btn btn--primary btn--full hero__card-cta" data-open-modal>Забронировать место</button>
+        </aside>
       </div>
     </section>
 
     <!-- Body signals -->
     <section class="section section--cream" id="about">
       <div class="container">
-        <div class="two-col">
+        <div class="two-col two-col--about">
           <div>
-            <h2 class="section__title">Всё начинается телесно</h2>
-            <p class="section__lead">На любую проблему или стресс сначала реагирует именно тело:</p>
+            <p class="section__lead about__signals-lead">На любую проблему или стресс сначала реагирует именно тело:</p>
             <ul class="symptoms">
               <li>Сжатие в груди</li>
               <li>Спазм в животе</li>
               <li>Поднятые плечи</li>
             </ul>
-            <p class="section__text">
+            <h2 class="section__title">Всё начинается телесно.</h2>
+            <p class="section__text about__signals-text">
               А значит, если заметить эти телесные сигналы раньше, чем мы «накрутим» себе кучу мыслей,
-              можно изменить реакцию на ситуацию и даже отношение к ней. <em>Через тело.</em>
+              можно изменить реакцию на ситуацию и даже отношение к ней.
             </p>
           </div>
           <div class="benefits">
             <h3 class="benefits__title">Когда вы уделите внимание своему телу, вы станете:</h3>
             <ul class="benefits__list">
-              <li>Быстро замечать, о чём вас «предупреждает» тело</li>
-              <li>Переключаться с паники «о боже, что с этим делать?» на спокойное «я знаю, что сделать»</li>
-              <li>Лучше управлять собой в стрессе</li>
-              <li>Распознавать свои истинные потребности — в еде, работе, отношениях</li>
-              <li>И наконец поймёте, чего вы на самом деле хотите</li>
+              <li>быстро замечать, о чём вас «предупреждает» тело</li>
+              <li>переключаться с паники «о боже, что с этим делать?» на спокойное «я знаю, что сделать»</li>
+              <li>лучше управлять собой в стрессе</li>
+              <li>распознавать свои истинные потребности — в еде, работе, отношениях</li>
+              <li>и наконец поймёте, чего вы на самом деле хотите</li>
             </ul>
           </div>
         </div>
@@ -103,69 +128,74 @@
     </section>
 
     <!-- For whom -->
-    <section class="section" id="for-whom">
+    <section class="section section--cream" id="for-whom">
       <div class="container">
-        <div class="intro-block">
-          <h2 class="section__title">Если устали от переедания, хронической усталости, апатии, тревожности</h2>
-          <p class="section__lead">Вы сможете управлять всеми этими состояниями. Через телесные практики.</p>
-          <p class="section__text">
-            Приходите открыть этот «ящик Пандоры».<br>
-            Только не страшный, а живительный. Тот, где спрятан ваш ресурс.
-          </p>
-        </div>
-
-        <div class="cards-grid">
-          <div class="card">
-            <h3>Этот тренинг для вас, если вы:</h3>
-            <ul>
-              <li>Хотите понять, почему ваше тело выглядит и чувствует себя именно так</li>
-              <li>Психолог или коуч — и хотите глубже понимать себя и клиентов через тело</li>
-              <li>Уже знакомы с телесными практиками, но ищете новое, более глубокое измерение</li>
+        <div class="two-col two-col--about">
+          <div class="benefits">
+            <h2 class="section__title for-whom__title">Этот тренинг подойдёт вам, если вы:</h2>
+            <ul class="benefits__list">
+              <li>хотите понять, почему ваше тело выглядит и чувствует себя именно так</li>
+              <li>устали от переедания, хронической усталости, апатии, тревожности</li>
+              <li>психолог или коуч — и хотите глубже понимать себя и клиентов через тело</li>
+              <li>уже знакомы с телесными практиками, но ищете новое, более глубокое измерение</li>
             </ul>
+          </div>
+          <div class="benefits">
+            <div class="for-whom__aside">
+              <p class="for-whom__lead">
+                <span class="for-whom__lead-line">Вы сможете управлять всеми этими состояниями.</span>
+                <span class="for-whom__lead-accent">Через телесные практики.</span>
+              </p>
+              <img
+                class="for-whom__figure"
+                src="asstes/for-whom-figure.png"
+                alt="Силуэт женщины в телесной практике"
+                width="847"
+                height="1476"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Format -->
+    <section class="section section--dark" id="format">
+      <div class="container">
+        <div class="format-grid">
+          <div>
+            <h2 class="section__title section__title--light">Формат</h2>
+            <ul class="format-list">
+              <li>много практических упражнений. Никакой скучной теории «просто послушать».</li>
+              <li>круг, где вы лично сможете задать свои вопросы Аглае.</li>
+              <li>полезные перекусы в перерыве.</li>
+              <li>абсолютно безопасное пространство, где можно быть собой.</li>
+            </ul>
+            <button class="btn btn--primary btn--lg format__cta" data-open-modal>Забронировать место</button>
           </div>
           <div class="card card--accent">
             <h3>Что вас ждёт?</h3>
             <p>2 дня полного погружения в телесность с Аглаей Датешидзе.</p>
           </div>
         </div>
-
-        <div class="trainer">
-          <div class="trainer__photo">
-            <div class="trainer__photo-placeholder" aria-hidden="true">
-              <span>АД</span>
-            </div>
-          </div>
-          <div class="trainer__info">
-            <span class="trainer__label">Кто ведущая</span>
-            <h3 class="trainer__name">Аглая Датешидзе</h3>
-            <p class="trainer__role">танцевально-двигательный терапевт, психолог, предприниматель, писательница</p>
-            <p class="trainer__desc">
-              Её стиль — бережность и точность. Она умеет достучаться до самых глубоких слоёв напряжения,
-              куда вы сами боялись заглянуть.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Format & Price -->
-    <section class="section section--dark" id="format">
+    <!-- Quote -->
+    <section class="quote-banner">
       <div class="container">
-        <h2 class="section__title section__title--light">Формат</h2>
-        <ul class="format-list">
-          <li>Много практических упражнений. Никакой скучной теории «просто послушать».</li>
-          <li>Круг, где вы лично сможете задать свои вопросы Аглае.</li>
-          <li>Полезные перекусы в перерыве.</li>
-          <li>Абсолютно безопасное пространство, где можно быть собой.</li>
-          <li>Специальной подготовки не нужно. Не важно, умеете ли вы танцевать. Не важно, какое у вас тело. Приходите таким, какой вы есть.</li>
-        </ul>
-        <p class="format-warning">Количество мест строго ограничено.</p>
+        <p class="quote-banner__text">Не важно, какое у вас тело.<br>Приходите таким, какой вы есть.</p>
       </div>
     </section>
 
+    <!-- Price -->
     <section class="section section--price" id="price">
       <div class="container">
         <div class="price-block">
+          <p class="price-location">Место проведения: г. Тюмень</p>
+          <p class="price-limit">Количество участников ограничено</p>
+          <h2 class="section__title">Стоимость участия</h2>
           <div class="price-badge">Действует акция ранней стоимости</div>
           <div class="price-cards">
             <div class="price-card price-card--early">
@@ -173,28 +203,48 @@
               <span class="price-card__amount">15 000 ₽</span>
             </div>
             <div class="price-card">
-              <span class="price-card__label">После 18 августа</span>
+              <span class="price-card__label">После 1 сентября</span>
               <span class="price-card__amount">17 000 ₽</span>
               <span class="price-card__note">при наличии мест</span>
             </div>
           </div>
-          <p class="price-note">Занимайте место сейчас, пока не разобрали.</p>
-          <p class="price-tagline">Станьте человеком, чьё тело всё вывозит — и ещё спасибо скажет.</p>
           <div class="price-actions">
             <button class="btn btn--primary btn--lg" data-open-modal>Забронировать место</button>
             <button class="btn btn--secondary btn--lg" data-open-modal data-early>Записаться по ранней стоимости</button>
-            <a href="#contact" class="btn btn--ghost btn--lg">Задать вопрос</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Preparation -->
+    <section class="section section--cream" id="preparation">
+      <div class="container">
+        <h2 class="section__title">Нужна ли специальная подготовка?</h2>
+        <ul class="prep-list">
+          <li>Одежду, в которой удобно валяться на полу</li>
+          <li>Одежду слоями, чтобы можно было снимать и одевать, если будет жарко или холодно</li>
+          <li>Тёплые носки, если будет прохладно</li>
+          <li>Сменную одежду, если намокнете</li>
+          <li>Перекус по желанию</li>
+        </ul>
+        <p class="section__text prep-note">
+          Специальной подготовки не нужно. Не важно, умеете ли вы танцевать.<br>
+          Не важно, какое у вас тело. Приходите таким, какой вы есть.
+        </p>
       </div>
     </section>
 
     <!-- Contact -->
     <section class="section section--contact" id="contact">
       <div class="container">
-        <h2 class="section__title">Остались вопросы?</h2>
-        <p class="section__text">Напишите мне в чат — я на связи и с радостью отвечу на всё, что вас волнует.</p>
-        <a href="https://t.me/" class="btn btn--outline btn--lg" target="_blank" rel="noopener">Написать в Telegram</a>
+        <h2 class="section__title">Контакты</h2>
+        <div class="contact-card">
+          <p class="contact-card__name">Аида Баймухаметова</p>
+          <a href="tel:+79829878030" class="contact-card__phone">+7 982 987 8030</a>
+          <div class="contact-card__links">
+            <a href="https://vk.ru/id412170144" target="_blank" rel="noopener">ВКонтакте</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -204,7 +254,7 @@
       <p class="footer__copy">&copy; 2026 Аглая Датешидзе. Все права защищены.</p>
       <nav class="footer__links">
         <a href="offer.html">Договор оферты</a>
-        <a href="privacy.html">Политика обработки персональных данных</a>
+        <a href="privacy.html">Согласие на обработку персональных данных</a>
       </nav>
     </div>
   </footer>
@@ -237,7 +287,7 @@
         <div class="form__group form__group--checkbox">
           <label>
             <input type="checkbox" name="consent" required>
-            <span>Я согласен(а) с <a href="privacy.html" target="_blank">политикой обработки персональных данных</a></span>
+            <span>Я согласен(а) с <a href="privacy.html" target="_blank">согласием на обработку персональных данных</a></span>
           </label>
         </div>
         <p class="form__error" id="form-error" hidden></p>
