@@ -997,7 +997,7 @@ button {
 }
 
 .trainer__label {
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   margin-bottom: 10px;
 }
 
