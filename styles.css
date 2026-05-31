@@ -858,6 +858,51 @@ button {
   margin-top: 32px;
 }
 
+.format-teaser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  padding: 8px 0;
+}
+
+.format-teaser__title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.format-teaser__text {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--color-text);
+}
+
+.text-trail {
+  cursor: default;
+}
+
+.text-trail__char {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.text-trail__char--space {
+  width: 0.35em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-trail__char {
+    transition: none;
+  }
+}
+
 /* ===== Quote banner ===== */
 .quote-banner {
   padding: 64px 0;
@@ -1604,6 +1649,11 @@ button {
   .format-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .format-teaser {
+    text-align: center;
+    align-self: stretch;
   }
 
   .two-col--about {

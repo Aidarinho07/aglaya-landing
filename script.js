@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initForWhomReveal();
+  initTextTrail();
 });
 
 function initForWhomReveal() {
@@ -220,4 +221,66 @@ function initForWhomReveal() {
   );
 
   observer.observe(section);
+}
+
+function initTextTrail() {
+  const elements = document.querySelectorAll('[data-text-trail]');
+  if (!elements.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  elements.forEach((el) => {
+    const original = el.textContent.trim();
+    el.setAttribute('aria-label', original);
+    el.textContent = '';
+
+    const chars = [];
+
+    for (const char of original) {
+      const span = document.createElement('span');
+      span.className = 'text-trail__char';
+      span.setAttribute('aria-hidden', 'true');
+
+      if (char === ' ') {
+        span.classList.add('text-trail__char--space');
+        span.innerHTML = '&nbsp;';
+      } else {
+        span.textContent = char;
+      }
+
+      el.appendChild(span);
+      chars.push(span);
+    }
+
+    const radius = 110;
+    const strength = 0.38;
+
+    function handleMove(event) {
+      chars.forEach((span) => {
+        const rect = span.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        const dx = event.clientX - x;
+        const dy = event.clientY - y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < radius) {
+          const force = (1 - dist / radius) * strength;
+          span.style.transform = `translate(${-dx * force}px, ${-dy * force}px)`;
+        } else {
+          span.style.transform = 'translate(0, 0)';
+        }
+      });
+    }
+
+    function reset() {
+      chars.forEach((span) => {
+        span.style.transform = 'translate(0, 0)';
+      });
+    }
+
+    el.addEventListener('mousemove', handleMove);
+    el.addEventListener('mouseleave', reset);
+  });
 }
