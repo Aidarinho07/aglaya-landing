@@ -271,32 +271,20 @@
       <button class="modal__close" data-close-modal aria-label="Закрыть">&times;</button>
       <h2 id="modal-title" class="modal__title">Записаться на тренинг</h2>
       <p class="modal__subtitle">«Тело, которое всё вывозит» — 18–19 сентября, Тюмень</p>
-      <form class="form" id="registration-form">
-        <div class="form__group">
-          <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" required placeholder="Как к вам обращаться?">
-        </div>
-        <div class="form__group">
-          <label for="phone">Телефон</label>
-          <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
-        </div>
-        <div class="form__group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="email@example.com">
-        </div>
-        <div class="form__group form__group--checkbox">
-          <label>
-            <input type="checkbox" name="consent" required>
-            <span>Я согласен(а) с <a href="privacy.html" target="_blank">согласием на обработку персональных данных</a></span>
-          </label>
-        </div>
-        <p class="form__error" id="form-error" hidden></p>
-        <button type="submit" class="btn btn--primary btn--lg btn--full" id="submit-btn">Отправить заявку</button>
-      </form>
-      <div class="form-success" hidden>
-        <div class="form-success__icon">✓</div>
-        <h3>Заявка отправлена!</h3>
-        <p>Мы свяжемся с вами в ближайшее время для подтверждения записи.</p>
+      <p class="modal__hint">Выберите удобный мессенджер — сообщение подставится автоматически:</p>
+      <div class="messenger-picker">
+        <a class="messenger-btn messenger-btn--telegram" data-messenger="telegram" target="_blank" rel="noopener noreferrer" hidden>
+          <span class="messenger-btn__icon" aria-hidden="true">TG</span>
+          Telegram
+        </a>
+        <a class="messenger-btn messenger-btn--max" data-messenger="max" target="_blank" rel="noopener noreferrer" hidden>
+          <span class="messenger-btn__icon" aria-hidden="true">M</span>
+          MAX
+        </a>
+        <a class="messenger-btn messenger-btn--vk" data-messenger="vk" target="_blank" rel="noopener noreferrer" hidden>
+          <span class="messenger-btn__icon" aria-hidden="true">VK</span>
+          ВКонтакте
+        </a>
       </div>
     </div>
   </div>

@@ -1,9 +1,13 @@
 window.FORM_CONFIG = {
-  // Получите ключ на https://web3forms.com → укажите Aida.baymukhametova@gmail.com
-  web3formsAccessKey: '',
-
-  // Копия заявки (основное письмо — на ящик, указанный при получении ключа)
-  ccEmails: 'rakhimov.aydar@yandex.ru',
+  booking: {
+    message: 'Здравствуйте, хочу записаться на тренинг к Аглае Датешидзе',
+    // Username в Telegram без @ (например: myusername)
+    telegram: '',
+    // ID пользователя ВК (цифры из vk.ru/id412170144)
+    vk: '412170144',
+    // Ник в MAX → ссылка max.ru/ник (скопируйте из профиля в приложении)
+    max: '',
+  },
 
   contact: {
     name: 'Аида Баймухаметова',

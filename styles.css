@@ -1296,7 +1296,91 @@ button {
 .modal__subtitle {
   font-size: 14px;
   color: var(--color-text-muted);
-  margin-bottom: 28px;
+  margin-bottom: 12px;
+}
+
+.modal__hint {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+
+.messenger-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.messenger-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.messenger-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.messenger-btn__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.messenger-btn--telegram {
+  border-color: rgba(42, 171, 238, 0.35);
+}
+
+.messenger-btn--telegram:hover {
+  border-color: #2aabee;
+}
+
+.messenger-btn--telegram .messenger-btn__icon {
+  background: #2aabee;
+}
+
+.messenger-btn--max {
+  border-color: rgba(91, 95, 255, 0.35);
+}
+
+.messenger-btn--max:hover {
+  border-color: #5b5fff;
+}
+
+.messenger-btn--max .messenger-btn__icon {
+  background: linear-gradient(135deg, #5b5fff 0%, #8b5cf6 100%);
+}
+
+.messenger-btn--vk {
+  border-color: rgba(0, 119, 255, 0.35);
+}
+
+.messenger-btn--vk:hover {
+  border-color: #0077ff;
+}
+
+.messenger-btn--vk .messenger-btn__icon {
+  background: #0077ff;
 }
 
 /* ===== Form ===== */
