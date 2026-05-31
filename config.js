@@ -1,9 +1,9 @@
 window.FORM_CONFIG = {
-  // Получите бесплатно за 30 сек: https://web3forms.com → введите rakhimov.aydar@yandex.ru → ключ придёт на почту
+  // Получите ключ на https://web3forms.com → укажите Aida.baymukhametova@gmail.com
   web3formsAccessKey: '',
 
-  // Копии письма (основное — на ящик, указанный при регистрации ключа)
-  ccEmails: 'Aida.Baimukhametova@tofsgroup.ru, Aidar.Rakhimov@tofsgroup.ru',
+  // Копия заявки (основное письмо — на ящик, указанный при получении ключа)
+  ccEmails: 'rakhimov.aydar@yandex.ru',
 
   contact: {
     name: 'Аида Баймухаметова',

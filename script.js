@@ -1,8 +1,8 @@
 const FORM_SUBJECT = 'Новая заявка — тренинг «Тело, которое всё вывозит»';
 
 const FORM_RECIPIENTS = {
-  primary: 'Aida.Baimukhametova@tofsgroup.ru',
-  cc: 'Aidar.Rakhimov@tofsgroup.ru, rakhimov.aydar@yandex.ru',
+  primary: 'Aida.baymukhametova@gmail.com',
+  cc: 'rakhimov.aydar@yandex.ru',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
