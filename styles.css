@@ -1388,19 +1388,6 @@ button {
   border-radius: 12px;
 }
 
-.messenger-btn--telegram {
-  border-color: rgba(42, 171, 238, 0.35);
-}
-
-.messenger-btn--telegram:hover {
-  border-color: #2aabee;
-  background: rgba(42, 171, 238, 0.06);
-}
-
-.messenger-btn--telegram .messenger-btn__icon {
-  background: #2aabee;
-}
-
 .messenger-btn--max {
   border-color: rgba(75, 100, 255, 0.35);
 }

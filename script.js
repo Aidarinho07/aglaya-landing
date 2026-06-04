@@ -24,15 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = encodeURIComponent(getBookingMessage());
     const links = {};
 
-    if (cfg.telegram) {
-      const username = String(cfg.telegram).replace(/^@/, '').trim();
-      if (username) {
-        links.telegram = MOBILE_RE.test(navigator.userAgent)
-          ? `tg://resolve?domain=${username}&text=${message}`
-          : `https://t.me/${username}?text=${message}`;
-      }
-    }
-
     if (cfg.vk) {
       const vkId = String(cfg.vk).replace(/\D/g, '');
       if (vkId) {
