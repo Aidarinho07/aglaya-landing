@@ -1641,6 +1641,10 @@ button {
     max-width: none;
   }
 
+  .hero__hook {
+    display: none;
+  }
+
   .two-col,
   .cards-grid,
   .format-grid,
@@ -1785,10 +1789,6 @@ button {
 
   .hero__training-lead {
     font-size: 15px;
-  }
-
-  .hero__hook {
-    font-size: 16px;
   }
 
   .hero__benefits li {
