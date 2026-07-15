@@ -369,6 +369,16 @@ button {
   margin-bottom: 24px;
 }
 
+.hero__card-price-note--asterisk {
+  font-size: 12px;
+  margin-top: -18px;
+  margin-bottom: 24px;
+}
+
+.hero__card-price-note + .hero__card-price-note--asterisk {
+  margin-top: -20px;
+}
+
 .hero__card-divider {
   height: 1px;
   background: var(--color-border);
